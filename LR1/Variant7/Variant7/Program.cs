@@ -29,11 +29,39 @@ namespace Variant7
             //TargetHearRate(maxPuls, target);
         }
 
-        
-        
+
+        public static void TargetHearRate(int maxPuls, string target)
+        {
+            double recommendPulsMin;
+            double recommendPulsMax;
+            if (target == "1")
+            {
+                recommendPulsMin = Math.Ceiling(maxPuls * 0.6);
+                recommendPulsMax = Math.Floor(maxPuls * 0.7);
+                Console.WriteLine("Рекомендуемый пульс: " + recommendPulsMin + "-" + recommendPulsMax + "уд/мин");
+            }
+            else if (target == "2")
+            {
+                recommendPulsMin = Math.Ceiling(maxPuls * 0.7);
+                recommendPulsMax = Math.Floor(maxPuls * 0.8);
+                Console.WriteLine("Рекомендуемый пульс: " + recommendPulsMin + "-" + recommendPulsMax + "уд/мин");
+            }
+            else if (target == "3")
+            {
+                recommendPulsMin = Math.Ceiling(maxPuls * 0.8);
+                recommendPulsMax = Math.Floor(maxPuls * 0.9);
+                Console.WriteLine("Рекомендуемый пульс: " + recommendPulsMin + "-" + recommendPulsMax + "уд/мин");
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели посторонний символ");
+                InputData();
+
+            }
+        }
 
 
-        static void Main(string[] args)
+            static void Main(string[] args)
         {
             InputData();
             
