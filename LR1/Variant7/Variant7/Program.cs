@@ -27,7 +27,7 @@ namespace Variant7
             string target = Console.ReadLine();
             maxPuls = 220 - age;
             Console.WriteLine("Максимальный пульс: " + maxPuls);
-            //TargetHearRate(maxPuls, target);
+            TargetHearRate(maxPuls, target);
         }
 
 
