@@ -18,7 +18,8 @@ namespace BikeRental
             List<Bike> allBike = new List<Bike>() { bike, scooter, rollers, skis, skateboard };
             Print(allBike);
             List<Bike> order = GetBike(allBike);
-            
+            FinalPrice(allBike, order);
+
         }
         static Bike CreateBike(int id, string name, int price, int amount)
         {
@@ -65,8 +66,40 @@ namespace BikeRental
             return Order;
         }
 
-        
+        static void FinalPrice(List<Bike> allBike, List<Bike> order)
+        {
+            foreach (Bike bike in allBike)
+            {
+                int need = 0;
+                foreach (Bike o in order)
+                    if (o.id_ == bike.id_)
+                        need += o.amount_;
 
-        
+                if (need > bike.amount_)
+                {
+                    Console.WriteLine($"Заказ не может быть принят, не хватает: {bike.name_}");
+                    return;
+                }
+            }
+
+            int total = 0;
+            for (int i = 0; i < allBike.Count; i++)
+            {
+                Bike bike = allBike[i];
+                for (int j = 0; j < order.Count; j++)
+                {
+                    if (order[j].id_ == allBike[i].id_)
+                    {
+                        bike.amount_ -= order[j].amount_;
+                        total += bike.price_ * order[j].amount_;
+                    }
+                }
+                allBike[i] = bike;
+            }
+
+            Console.WriteLine($"Стоимость заказа: {total} руб.");
+        }
+
+
     }
 }
