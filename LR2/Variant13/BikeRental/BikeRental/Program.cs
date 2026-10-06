@@ -19,6 +19,7 @@ namespace BikeRental
             Print(allBike);
             List<Bike> order = GetBike(allBike);
             FinalPrice(allBike, order);
+            PrintRemains(allBike);
 
         }
         static Bike CreateBike(int id, string name, int price, int amount)
@@ -98,6 +99,18 @@ namespace BikeRental
             }
 
             Console.WriteLine($"Стоимость заказа: {total} руб.");
+        }
+
+        static void PrintRemains(List<Bike> allBike)
+        {
+            Console.Write("Осталось транспорта: ");
+            for (int i = 0; i < allBike.Count; i++)
+            {
+                Console.Write($"{allBike[i].name_} {allBike[i].amount_}");
+                if (i < allBike.Count - 1)
+                    Console.Write(", ");
+            }
+            Console.WriteLine();
         }
 
 
