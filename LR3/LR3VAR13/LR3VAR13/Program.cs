@@ -159,6 +159,19 @@ namespace LR3VAR13
 
             Console.WriteLine($"Стоимость заказа: {totalCost} руб.");
         }
-
+        static void PrintRemains(BikePark park)
+        {
+            Console.Write("Осталось транспорта: ");
+            List<TransportItem> items = park.GetPark();
+            for (int i = 0; i < items.Count; i++)
+            {
+                Console.Write($"{items[i].GetName()} {items[i].GetAmount()}");
+                if (i < items.Count - 1)
+                {
+                    Console.Write(", ");
+                }
+            }
+            Console.WriteLine();
+        }
     }
 }
