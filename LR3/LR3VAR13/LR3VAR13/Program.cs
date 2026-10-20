@@ -113,6 +113,52 @@ namespace LR3VAR13
             }
             return order;
         }
+        static void ProcessOrder(BikePark park, List<OrderItem> order)
+        {
+
+
+            if (order.Count == 0)
+            {
+                Console.WriteLine("Заказ пуст.");
+                return;
+            }
+
+            for (int i = 0; i < order.Count; i++)
+            {
+                TransportItem parkItem = park.FindTransport(order[i].GetType());
+                if (parkItem.GetAmount() < order[i].GetQuantity())
+                {
+                    Console.WriteLine($"Заказ не может быть принят, не хватает: {parkItem.GetName()}");
+                    return;
+                }
+            }
+
+            int totalCost = 0;
+            List<TransportItem> parkItems = park.GetPark();
+
+            for (int i = 0; i < order.Count; i++)
+            {
+                for (int j = 0; j < parkItems.Count; j++)
+                {
+                    if (parkItems[j].GetTranspType() == order[i].GetType())
+                    {
+                        int newAmount = parkItems[j].GetAmount() - order[i].GetQuantity();
+
+                        parkItems[j] = new TransportItem(
+                            parkItems[j].GetTranspType(),
+                            parkItems[j].GetName(),
+                            parkItems[j].GetPrice(),
+                            newAmount
+                        );
+
+                        totalCost += parkItems[j].GetPrice() * order[i].GetQuantity();
+                        break;
+                    }
+                }
+            }
+
+            Console.WriteLine($"Стоимость заказа: {totalCost} руб.");
+        }
 
     }
 }
