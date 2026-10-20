@@ -31,6 +31,21 @@ namespace LR3VAR13
                 Console.WriteLine($"{i + 1}. {items[i].GetName()} — {items[i].GetPrice()} руб., {items[i].GetAmount()} шт.");
             }
         }
+        static bool IsNumber(string text)
+        {
+            if (text.Length == 0)
+            {
+                return false;
+            }
 
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] < '0' || text[i] > '9')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
