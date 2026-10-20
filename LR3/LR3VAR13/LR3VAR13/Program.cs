@@ -10,7 +10,14 @@ namespace LR3VAR13
     {
         static void Main(string[] args)
         {
+            BikePark park = CreatePark();
+            PrintPark(park);
 
+            List<OrderItem> order = GetOrder();
+
+            ProcessOrder(park, order);
+
+            PrintRemains(park);
         }
         static BikePark CreatePark()
         {
