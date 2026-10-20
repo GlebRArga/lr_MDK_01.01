@@ -22,6 +22,15 @@ namespace LR3VAR13
             park.AddTransport(new TransportItem(TransportType.Skateboard, "скейтборд", 950, 10));
             return park;
         }
+        static void PrintPark(BikePark park)
+        {
+            Console.WriteLine("Парк проката:");
+            List<TransportItem> items = park.GetPark();
+            for (int i = 0; i < items.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {items[i].GetName()} — {items[i].GetPrice()} руб., {items[i].GetAmount()} шт.");
+            }
+        }
 
     }
 }
