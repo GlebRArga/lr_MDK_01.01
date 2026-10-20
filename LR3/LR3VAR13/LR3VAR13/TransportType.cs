@@ -8,5 +8,10 @@ namespace LR3VAR13
 {
     public enum TransportType
     {
+        Bicycle,
+        Scooter,
+        Rollers,
+        Skis,
+        Skateboard
     }
 }
