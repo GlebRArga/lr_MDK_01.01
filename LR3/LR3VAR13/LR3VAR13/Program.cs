@@ -47,5 +47,72 @@ namespace LR3VAR13
             }
             return true;
         }
+        static List<OrderItem> GetOrder()
+        {
+            List<OrderItem> order = new List<OrderItem>();
+
+            while (true)
+            {
+                Console.Write("Введите номер транспорта (0 — конец заказа): ");
+                string inputId = Console.ReadLine();
+
+                if (IsNumber(inputId) == false)
+                {
+                    Console.WriteLine("Ошибка: введите целое положительное число.");
+                    continue;
+                }
+
+                int id = Convert.ToInt32(inputId);
+
+                if (id == 0)
+                {
+                    break;
+                }
+
+                if (id < 1 || id > 5)
+                {
+                    Console.WriteLine("Ошибка: номер транспорта от 1 до 5.");
+                    continue;
+                }
+
+                Console.Write("Введите количество: ");
+                string inputQty = Console.ReadLine();
+
+                if (IsNumber(inputQty) == false)
+                {
+                    Console.WriteLine("Ошибка: введите целое положительное число.");
+                    continue;
+                }
+
+                int qty = Convert.ToInt32(inputQty);
+
+                if (qty <= 0)
+                {
+                    Console.WriteLine("Ошибка: количество должно быть больше нуля.");
+                    continue;
+                }
+
+                TransportType type = (TransportType)(id - 1);
+
+                bool found = false;
+                for (int i = 0; i < order.Count; i++)
+                {
+                    if (order[i].GetType() == type)
+                    {
+                        int newQty = order[i].GetQuantity() + qty;
+                        order[i] = new OrderItem(type, newQty);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found == false)
+                {
+                    order.Add(new OrderItem(type, qty));
+                }
+            }
+            return order;
+        }
+
     }
 }
