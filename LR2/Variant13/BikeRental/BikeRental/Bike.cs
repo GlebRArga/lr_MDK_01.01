@@ -12,5 +12,8 @@ namespace BikeRental
         public string name_;
         public int price_;
         public int amount_;
+
+
+
     }
 }
