@@ -8,5 +8,6 @@ namespace LR3VAR13
 {
     public class BikePark
     {
+
     }
 }
