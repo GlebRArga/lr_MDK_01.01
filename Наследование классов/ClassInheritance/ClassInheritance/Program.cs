@@ -61,6 +61,22 @@ namespace ClassInheritance
             ch25.SetPrice(350.0);
             ch25.SetSold(12);
             products.Add(ch25);
+
+            Console.WriteLine($"{"Название товара",-20} | {"Цена",7} | {"Продано",7} | {"Стоимость",9} | {"Скидка",6} |{"Итого",9}");
+
+            foreach (Product item in products)
+            {
+                string name = item.GetName();
+                double price = item.GetPrice();
+                int sold = item.GetSold();
+
+                double discount = item.GetDiscount();
+                double totalCost = price * sold;
+                double finalCost = totalCost - (totalCost * (discount / 100.0));
+
+                Console.WriteLine($"{name,-20}  {price,7}  {sold,7}  {totalCost,9}  {discount,6}  {finalCost,9}");
+            }
+            Console.ReadKey();
         }
     }
 }
